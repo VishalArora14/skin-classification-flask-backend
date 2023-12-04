@@ -1,0 +1,4 @@
+flask-cors 
+flask 
+tensorflow 
+opencv-python-headless
