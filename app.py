@@ -3,10 +3,11 @@ from flask import Flask, request, jsonify #, render_template
 # from keras.preprocessing.image import img_to_array
 # from keras.applications.vgg16 import preprocess_input
 # from keras.applications.vgg16 import decode_predictions
-# #from keras.applications.vgg16 import VGG16
+# from keras.applications.vgg16 import VGG16
 # from keras.applications.resnet50 import ResNet50
-# # from keras.applications.resnet50 import decode_predictions
-
+# from keras.applications.resnet50 import decode_predictions
+ 
+import os
 import cv2
 import numpy as np
 import tensorflow as tf
@@ -18,9 +19,15 @@ from flask_cors import CORS  # Import CORS from flask_cors
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes in your Flask app
 
-# Load your models and define class names
-model_path = 'short_psoriasis.h5'
+# Load your models
+# model_path = 'short_psoriasis.h5'
+
+# define class names
 class_names = ['guttate_psoriasis', 'Nail_psoriasis', 'plaque_psoriasis']
+
+# Get the directory where your app is running on Render.com
+base_path = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_path, 'short_psoriasis.h5')
 model = load_model(model_path)
 
 vgg_model = VGG19(weights='imagenet', include_top=False, input_shape=(180, 180, 3))
