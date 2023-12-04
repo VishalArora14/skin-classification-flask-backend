@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "name": "skin-disease-backend",
+  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "main.py" }]
+}
